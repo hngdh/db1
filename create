@@ -1,0 +1,57 @@
+CREATE TYPE SIZE AS ENUM(
+	'small',
+	'medium',
+	'big'
+);
+
+CREATE TYPE COLOR AS ENUM(
+	'white',
+	'yellow',
+	'red',
+	'purple',
+	'green',
+	'brown',
+	'black'
+);
+
+CREATE TYPE HEALTH AS ENUM(
+	'weak',
+	'normal',
+	'strong'
+);
+
+CREATE TABLE locations(
+	location_id SERIAL PRIMARY KEY,
+	name VARCHAR(255) UNIQUE NOT NULL,
+	size SIZE
+);
+
+CREATE TABLE characters(
+	character_id SERIAL PRIMARY KEY,
+	name VARCHAR(255) UNIQUE NOT NULL,
+	location_id INTEGER NOT NULL REFERENCES locations(location_id)
+);
+
+CREATE TABLE objects(
+	object_id SERIAL PRIMARY KEY,
+	name VARCHAR(255) UNIQUE NOT NULL,
+	color COLOR,
+	location_id INTEGER NOT NULL REFERENCES locations(location_id)
+);
+
+CREATE TABLE location_arguments(
+	location_arguments_id SERIAL PRIMARY KEY,
+	quantity INTEGER CHECK(quantity > 0),
+	location_id INTEGER NOT NULL REFERENCES locations(location_id),
+	component_id INTEGER NOT NULL REFERENCES objects(object_id)
+);
+
+CREATE TABLE character_arguments(
+	character_arguments_id SERIAL PRIMARY KEY,
+	characteristics TEXT,
+	health HEALTH,
+	action TEXT,
+	size SIZE,
+	appearance TEXT,
+	character_id INTEGER NOT NULL REFERENCES characters(character_id)
+);

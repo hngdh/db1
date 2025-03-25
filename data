@@ -1,0 +1,24 @@
+INSERT INTO locations(name, size) VALUES
+	('jungle','big'::SIZE),
+	('lake','medium'::SIZE),
+	('triangle','small'::SIZE);
+
+INSERT INTO characters(name, location_id) VALUES
+	('monster', (SELECT location_id FROM locations WHERE name = 'lake')),
+	('membrane', (SELECT location_id FROM locations WHERE name = 'triangle')),
+	('explorer', (SELECT location_id FROM locations WHERE name = 'jungle'));
+
+INSERT INTO objects(name, color, location_id) VALUES
+	('tree', 'green'::COLOR, (SELECT location_id FROM locations WHERE name = 'jungle')),
+	('eye', 'brown'::COLOR, (SELECT location_id FROM locations WHERE name = 'triangle')),
+	('fish', 'yellow'::COLOR, (SELECT location_id FROM locations WHERE name = 'lake'));
+
+INSERT INTO location_arguments(quantity, location_id, component_id) VALUES
+	(1000000, 1, 1),
+	(100, 2, 2),
+	(10, 3, 3);
+
+INSERT INTO character_arguments(characteristics, health, action, size, appearance, character_id) VALUES
+	('determined', 'weak'::HEALTH, 'sit', 'big'::SIZE, 'ugly', (SELECT character_id FROM characters WHERE name = 'monster')),
+	('hopeless', 'weak'::HEALTH, 'beat', 'small'::SIZE, 'invisible', (SELECT character_id FROM characters WHERE name = 'membrane')),
+	('adventurous', 'normal'::HEALTH, 'stand', 'medium'::SIZE, 'handsome', (SELECT character_id FROM characters WHERE name = 'explorer'));

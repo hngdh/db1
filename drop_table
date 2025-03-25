@@ -1,0 +1,5 @@
+DROP TABLE locations CASCADE;
+DROP TABLE characters CASCADE;
+DROP TABLE objects CASCADE;
+DROP TABLE location_arguments CASCADE;
+DROP TABLE character_arguments CASCADE;
