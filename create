@@ -35,8 +35,7 @@ CREATE TABLE characters(
 CREATE TABLE objects(
 	object_id SERIAL PRIMARY KEY,
 	name VARCHAR(255) UNIQUE NOT NULL,
-	color COLOR,
-	location_id INTEGER NOT NULL REFERENCES locations(location_id)
+	color COLOR
 );
 
 CREATE TABLE location_arguments(
