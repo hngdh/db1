@@ -8,10 +8,10 @@ INSERT INTO characters(name, location_id) VALUES
 	('membrane', (SELECT location_id FROM locations WHERE name = 'triangle')),
 	('explorer', (SELECT location_id FROM locations WHERE name = 'jungle'));
 
-INSERT INTO objects(name, color, location_id) VALUES
-	('tree', 'green'::COLOR, (SELECT location_id FROM locations WHERE name = 'jungle')),
-	('eye', 'brown'::COLOR, (SELECT location_id FROM locations WHERE name = 'triangle')),
-	('fish', 'yellow'::COLOR, (SELECT location_id FROM locations WHERE name = 'lake'));
+INSERT INTO objects(name, color) VALUES
+	('tree', 'green'::COLOR),
+	('eye', 'brown'::COLOR),
+	('fish', 'yellow'::COLOR);
 
 INSERT INTO location_arguments(quantity, location_id, component_id) VALUES
 	(1000000, 1, 1),
